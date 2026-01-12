@@ -8,9 +8,9 @@ export default defineConfig({
   reporter: [['html', { open: 'never' }]], // gera relatório HTML
 
   use: {
-    headless: false, // define se o navegador é visível
+    headless: process.env.CI ? true : false, // headless mode on CI, headed locally
     launchOptions: {
-      slowMo: 500, // 500ms entre cada ação
+      slowMo: process.env.CI ? 0 : 500, // no slowMo on CI
     },
     viewport: { width: 1280, height: 720 },
     actionTimeout: 10 * 1000,
